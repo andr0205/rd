@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RDP UP • Reaction Timer</title>
+
+<meta name="theme-color" content="#050505">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="timer-body">
+
+<!-- BG -->
+
+<div class="bg-glow"></div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo-container">
+
+        <a href="index.html">
+
+            <img src="assets/logo/logo.png" alt="RDP UP" class="logo-img">
+
+        </a>
+
+    </div>
+
+    <div class="nav-links">
+
+            <a href="index.html">Inicio</a>
+
+            <a href="nosotros.html">Nosotros</a>
+
+            <a href="proyecto.html">Proyecto</a>
+
+            <a href="equipo.html">Equipo</a>
+
+            <a href="galeria.html">Galería</a>
+
+            <a href="sponsors.html">Sponsors</a>
+
+            <a href="contacto.html">Contacto</a>
+
+            <a href="timer.html">Timer</a>
+
+            <a href="portafolios.html">Portafolios</a>
+
+    </div>
+
+</nav>
+
+<!-- TIMER -->
+
+<section class="timer">
+
+    <div class="timer-container">
+
+        <!-- TITLE -->
+
+        <div class="timer-header">
+
+            <p class="timer-subtitle">
+                RDP UP
+            </p>
+
+            <h1>
+                F1 REACTION TIMER
+            </h1>
+
+            <p class="timer-description">
+
+                Toca la pantalla cuando las luces se apaguen.
+
+            </p>
+
+        </div>
+
+        <!-- LIGHTS -->
+
+        <div class="lights-wrapper" id="lightsWrapper"></div>
+
+        <!-- TIME -->
+
+        <div class="reaction-time" id="reactionTime">
+
+            0.000s
+
+        </div>
+
+        <!-- STATUS -->
+
+        <div class="timer-status" id="statusText">
+
+            Toca para iniciar
+
+        </div>
+
+        <!-- STATS -->
+
+        <div class="timer-stats">
+
+            <div class="timer-stat">
+
+                <h3>
+                    BEST
+                </h3>
+
+                <p id="bestTime">
+
+                    0.000
+
+                </p>
+
+            </div>
+
+            <div class="timer-stat">
+
+                <h3>
+                    ATTEMPTS
+                </h3>
+
+                <p id="attempts">
+
+                    0
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- HISTORY -->
+
+        <div class="history">
+
+            <div class="history-title">
+
+                SESSION TIMES
+
+            </div>
+
+            <div class="history-list" id="historyList"></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script>
+
+/* =========================
+CONFIG
+========================= */
+
+const TOTAL_COLUMNS = 5;
+const BULBS_PER_COLUMN = 5;
+
+/* =========================
+ELEMENTS
+========================= */
+
+const lightsWrapper = document.getElementById('lightsWrapper');
+
+const reactionTimeText = document.getElementById('reactionTime');
+
+const statusText = document.getElementById('statusText');
+
+const bestTimeText = document.getElementById('bestTime');
+
+const attemptsText = document.getElementById('attempts');
+
+const historyList = document.getElementById('historyList');
+
+/* =========================
+STATE
+========================= */
+
+const columns = [];
+const allBulbs = [];
+
+let started = false;
+let waiting = false;
+let canClick = false;
+
+let currentGameId = 0;
+
+let reactionStart = 0;
+
+let attempts = 0;
+
+let bestTime = localStorage.getItem('rdp-best-time');
+
+const sessionTimes = [];
+
+/* =========================
+LOAD BEST
+========================= */
+
+if(bestTime){
+
+    bestTimeText.textContent = Number(bestTime).toFixed(3);
+}
+
+/* =========================
+CREATE LIGHTS
+========================= */
+
+for(let c = 0; c < TOTAL_COLUMNS; c++){
+
+    const column = document.createElement('div');
+
+    column.className = 'light-column';
+
+    const bulbs = [];
+
+    for(let b = 0; b < BULBS_PER_COLUMN; b++){
+
+        const bulb = document.createElement('div');
+
+        bulb.className = 'bulb';
+
+        column.appendChild(bulb);
+
+        bulbs.push(bulb);
+
+        allBulbs.push(bulb);
+    }
+
+    lightsWrapper.appendChild(column);
+
+    columns.push(bulbs);
+}
+
+/* =========================
+CLEAR LIGHTS
+========================= */
+
+function clearLights(){
+
+    for(let i = 0; i < allBulbs.length; i++){
+
+        allBulbs[i].classList.remove('active');
+    }
+}
+
+/* =========================
+ACTIVATE COLUMN
+========================= */
+
+function activateColumn(index){
+
+    const bulbs = columns[index];
+
+    for(let i = 0; i < bulbs.length; i++){
+
+        bulbs[i].classList.add('active');
+    }
+}
+
+/* =========================
+RESET
+========================= */
+
+function resetGame(){
+
+    currentGameId++;
+
+    started = false;
+
+    waiting = false;
+
+    canClick = false;
+}
+
+/* =========================
+HISTORY
+========================= */
+
+function renderHistory(){
+
+    historyList.innerHTML = '';
+
+    for(let i = 0; i < sessionTimes.length; i++){
+
+        const item = sessionTimes[i];
+
+        const row = document.createElement('div');
+
+        row.className = 'history-item';
+
+        row.innerHTML = `
+
+        <span>
+            ${item.toFixed(3)}s
+        </span>
+
+        `;
+
+        historyList.appendChild(row);
+    }
+}
+
+/* =========================
+START GAME
+========================= */
+
+async function startGame(){
+
+    if(started) return;
+
+    currentGameId++;
+
+    const gameId = currentGameId;
+
+    started = true;
+
+    waiting = true;
+
+    canClick = false;
+
+    clearLights();
+
+    reactionTimeText.textContent = '0.000s';
+
+    statusText.textContent = 'Prepárate...';
+
+    for(let i = 0; i < TOTAL_COLUMNS; i++){
+
+        if(gameId !== currentGameId) return;
+
+        activateColumn(i);
+
+        await new Promise(r => setTimeout(r, 600));
+    }
+
+    const randomDelay = 2000 + Math.random() * 3000;
+
+    await new Promise(r => setTimeout(r, randomDelay));
+
+    if(gameId !== currentGameId) return;
+
+    clearLights();
+
+    waiting = false;
+
+    canClick = true;
+
+    reactionStart = performance.now();
+
+    statusText.textContent = '¡YA!';
+}
+
+/* =========================
+REACTION
+========================= */
+
+function registerReaction(){
+
+    if(!started) return;
+
+    if(waiting){
+
+        statusText.textContent = 'FALSE START';
+
+        clearLights();
+
+        resetGame();
+
+        return;
+    }
+
+    if(!canClick) return;
+
+    canClick = false;
+
+    const reaction = (performance.now() - reactionStart) / 1000;
+
+    const finalTime = Number(reaction.toFixed(3));
+
+    reactionTimeText.textContent = `${finalTime.toFixed(3)}s`;
+
+    attempts++;
+
+    attemptsText.textContent = attempts;
+
+    sessionTimes.unshift(finalTime);
+
+    if(sessionTimes.length > 10){
+
+        sessionTimes.pop();
+    }
+
+    renderHistory();
+
+    if(!bestTime || finalTime < Number(bestTime)){
+
+        bestTime = finalTime;
+
+        localStorage.setItem('rdp-best-time', finalTime);
+
+        bestTimeText.textContent = finalTime.toFixed(3);
+    }
+
+    statusText.textContent = 'Toca para continuar';
+
+    resetGame();
+}
+
+/* =========================
+FAST INPUT
+========================= */
+
+document.addEventListener('pointerdown', () => {
+
+    if(!started){
+
+        startGame();
+
+        return;
+    }
+
+    registerReaction();
+
+},{
+    passive:true,
+    capture:true
+});
+
+</script>
+
+</body>
+</html>
