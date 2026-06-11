@@ -8,7 +8,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #050505;
+    #0D1117;
 
     color:white;
 
@@ -563,7 +563,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #050505;
+    #0D1117;
 
     color:white;
 
@@ -1845,6 +1845,108 @@ body{
     z-index:2;
 }
 
+/* =========================
+   MODELO 3D SKETCHFAB
+========================= */
+
+.project-video {
+    width: 100%;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.project-video h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.project-video p {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+.video-box {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.sketchfab-embed-wrapper {
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,0,140,0.25);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 30px rgba(255,0,140,0.15),
+        0 0 60px rgba(255,0,140,0.05);
+}
+
+.sketchfab-embed-wrapper iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    display: block;
+}
+
+.sketchfab-embed-wrapper p {
+    padding: 15px;
+    margin: 0 !important;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 992px) {
+
+    .sketchfab-embed-wrapper iframe {
+        height: 550px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .project-video {
+        margin-top: 80px;
+    }
+
+    .project-video h2 {
+        font-size: 1.8rem;
+    }
+
+    .sketchfab-embed-wrapper iframe {
+        height: 450px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .project-video h2 {
+        font-size: 1.5rem;
+    }
+
+    .project-video p {
+        font-size: 0.95rem;
+    }
+
+    .sketchfab-embed-wrapper {
+        border-radius: 18px;
+    }
+
+    .sketchfab-embed-wrapper iframe {
+        height: 320px;
+    }
+
+}
+
 /* ========================= */
 /* FRASE */
 /* ========================= */
@@ -1945,6 +2047,16 @@ body{
     .timeline-section h2{
 
         font-size:34px;
+    }
+
+    .project-video h2{
+
+        font-size:34px;
+    }
+
+    .project-video p{
+
+        font-size:16px;
     }
 
     .project-quote h2{
@@ -2886,7 +2998,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #050505;
+    #0D1117;
 
     overflow-x:hidden;
 
@@ -3000,7 +3112,7 @@ body{
 
     height:340px;
 
-    background:#050505;
+    background:#0D1117;
 
     border-radius:24px;
 
@@ -4126,5 +4238,709 @@ body{
     .page-info h2{
 
         font-size:22px;
+    }
+}
+
+/* ================================= */
+/* ARTICULOS HERO */
+/* ================================= */
+
+.articulos-hero{
+
+    padding:170px 80px 80px;
+
+    text-align:center;
+}
+
+.articulos-hero h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:70px;
+
+    color:white;
+
+    margin-bottom:20px;
+
+    text-shadow:0 0 25px #ff008c66;
+}
+
+.articulos-hero p{
+
+    color:#bdbdbd;
+
+    font-size:18px;
+
+    max-width:700px;
+
+    margin:auto;
+
+    line-height:1.8;
+}
+
+/* ================================= */
+/* GRID PRODUCTOS */
+/* ================================= */
+
+.articulos-grid{
+
+    padding:0 80px 100px;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:35px;
+}
+
+/* ================================= */
+/* CARD */
+/* ================================= */
+
+.articulo-card{
+
+    background:#0f141c;
+
+    border:1px solid #ff008c22;
+
+    border-radius:25px;
+
+    padding:30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:0.4s;
+}
+
+.articulo-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#ff008c;
+
+    box-shadow:0 0 35px #ff008c22;
+}
+
+/* ================================= */
+/* BADGE */
+/* ================================= */
+
+.badge{
+
+    position:absolute;
+
+    top:20px;
+    right:20px;
+
+    background:#ff008c;
+
+    color:white;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+    letter-spacing:1px;
+}
+
+/* ================================= */
+/* IMAGEN */
+/* ================================= */
+
+.articulo-card img{
+
+    width:100%;
+
+    height:280px;
+
+    object-fit:contain;
+
+    margin-bottom:25px;
+
+    transition:0.4s;
+}
+
+.articulo-card:hover img{
+
+    transform:scale(1.05);
+}
+
+/* ================================= */
+/* TITULO */
+/* ================================= */
+
+.articulo-card h3{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#ff008c;
+
+    font-size:24px;
+
+    margin-bottom:15px;
+}
+
+/* ================================= */
+/* TEXTO */
+/* ================================= */
+
+.articulo-card p{
+
+    color:#bdbdbd;
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+}
+
+/* ================================= */
+/* PRECIO */
+/* ================================= */
+
+.articulo-card span{
+
+    display:block;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:32px;
+
+    color:white;
+
+    text-shadow:0 0 15px #ff008c66;
+}
+
+/* ================================= */
+/* PACK */
+/* ================================= */
+
+.pack-rdp{
+
+    width:calc(100% - 160px);
+
+    margin:auto;
+
+    background:#0f141c;
+
+    border:1px solid #ff008c44;
+
+    border-radius:30px;
+
+    padding:60px;
+
+    text-align:center;
+
+    margin-bottom:120px;
+}
+
+.pack-rdp:hover{
+
+    box-shadow:0 0 50px #ff008c22;
+}
+
+.pack-rdp h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:42px;
+
+    color:#ff008c;
+
+    margin-bottom:40px;
+}
+
+.pack-rdp img{
+
+    width:100%;
+
+    max-width:500px;
+
+    margin-bottom:40px;
+
+    object-fit:contain;
+}
+
+.pack-rdp ul{
+
+    list-style:none;
+
+    margin-bottom:35px;
+}
+
+.pack-rdp li{
+
+    color:#d4d4d4;
+
+    margin:12px 0;
+
+    font-size:18px;
+}
+
+.pack-rdp span{
+
+    display:block;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:50px;
+
+    color:white;
+
+    text-shadow:0 0 25px #ff008c88;
+}
+
+/* ================================= */
+/* CONTACTO */
+/* ================================= */
+
+.articulos-contacto{
+
+    text-align:center;
+
+    padding:0 80px 120px;
+}
+
+.articulos-contacto h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:42px;
+
+    color:white;
+
+    margin-bottom:20px;
+}
+
+.articulos-contacto p{
+
+    color:#bdbdbd;
+
+    margin-bottom:40px;
+
+    font-size:18px;
+}
+
+/* ================================= */
+/* RESPONSIVE */
+/* ================================= */
+
+@media(max-width:1000px){
+
+    .articulos-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .pack-rdp{
+
+        width:calc(100% - 50px);
+    }
+
+    .articulos-hero h1{
+
+        font-size:50px;
+    }
+}
+
+@media(max-width:700px){
+
+    .articulos-hero{
+
+        padding:140px 25px 60px;
+    }
+
+    .articulos-grid{
+
+        padding:0 25px 60px;
+    }
+
+    .pack-rdp{
+
+        width:calc(100% - 50px);
+
+        padding:35px 20px;
+    }
+
+    .articulos-contacto{
+
+        padding:0 25px 80px;
+    }
+
+    .articulos-hero h1{
+
+        font-size:38px;
+    }
+
+    .pack-rdp h2{
+
+        font-size:28px;
+    }
+
+    .pack-rdp span{
+
+        font-size:36px;
+    }
+}
+
+/* ================================= */
+/* INNOVACION HERO */
+/* ================================= */
+
+.innovacion-hero{
+
+    padding:180px 80px 100px;
+
+    text-align:center;
+
+    max-width:1000px;
+
+    margin:auto;
+}
+
+.innovacion-hero h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:90px;
+
+    margin-bottom:25px;
+
+    text-transform:uppercase;
+}
+
+.innovacion-hero h1 span{
+
+    color:#ff008c;
+
+    text-shadow:0 0 20px #ff008c;
+}
+
+.innovacion-hero p{
+
+    max-width:800px;
+
+    margin:auto;
+
+    color:#bfbfbf;
+
+    line-height:1.8;
+
+    font-size:18px;
+}
+
+/* ================================= */
+/* VIDEO */
+/* ================================= */
+
+.innovacion-video{
+
+    padding:0 80px 100px;
+
+    text-align:center;
+}
+
+.innovacion-video h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#ff008c;
+
+    margin-bottom:40px;
+
+    font-size:38px;
+}
+
+.video-container{
+
+    max-width:300px;
+
+    margin:auto;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:1px solid #ff008c33;
+
+    box-shadow:0 0 30px #ff008c22;
+}
+
+.video-container video{
+
+    width:100%;
+
+    display:block;
+}
+
+/* ================================= */
+/* DESCRIPCION */
+/* ================================= */
+
+.innovacion-descripcion{
+
+    padding:0 80px 100px;
+
+    max-width:1000px;
+
+    margin:auto;
+
+    text-align:center;
+}
+
+.innovacion-descripcion h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#ff008c;
+
+    font-size:42px;
+
+    margin-bottom:35px;
+}
+
+.innovacion-descripcion p{
+
+    color:#cfcfcf;
+
+    line-height:1.9;
+
+    margin-bottom:25px;
+
+    font-size:17px;
+}
+
+/* ================================= */
+/* GRID */
+/* ================================= */
+
+.innovacion-grid{
+
+    padding:0 80px 120px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+}
+
+.innovacion-card{
+
+    background:#0b0b0b;
+
+    border:1px solid #ff008c22;
+
+    border-radius:25px;
+
+    padding:40px;
+
+    transition:0.4s;
+}
+
+.innovacion-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#ff008c;
+
+    box-shadow:0 0 35px #ff008c22;
+}
+
+.innovacion-card h3{
+
+    color:#ff008c;
+
+    font-family:'Orbitron',sans-serif;
+
+    margin-bottom:20px;
+
+    font-size:24px;
+}
+
+.innovacion-card p{
+
+    color:#bdbdbd;
+
+    line-height:1.8;
+}
+
+/* ================================= */
+/* BENEFICIOS */
+/* ================================= */
+
+.innovacion-beneficios{
+
+    padding:0 80px 120px;
+}
+
+.innovacion-beneficios h2{
+
+    text-align:center;
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#ff008c;
+
+    font-size:42px;
+
+    margin-bottom:60px;
+}
+
+.beneficios-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+}
+
+.beneficio{
+
+    background:#0d0d0d;
+
+    border:1px solid #ff008c22;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    transition:0.4s;
+}
+
+.beneficio:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#ff008c;
+
+    box-shadow:0 0 30px #ff008c22;
+}
+
+.beneficio span{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:38px;
+
+    color:#ff008c;
+
+    display:block;
+
+    margin-bottom:20px;
+}
+
+.beneficio h3{
+
+    margin-bottom:15px;
+
+    font-size:22px;
+}
+
+.beneficio p{
+
+    color:#bdbdbd;
+
+    line-height:1.7;
+}
+
+/* ================================= */
+/* FINAL */
+/* ================================= */
+
+.innovacion-final{
+
+    padding:0 80px 140px;
+
+    text-align:center;
+
+    max-width:900px;
+
+    margin:auto;
+}
+
+.innovacion-final h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:46px;
+
+    color:#ff008c;
+
+    margin-bottom:30px;
+}
+
+.innovacion-final p{
+
+    color:#cfcfcf;
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+
+    font-size:17px;
+}
+
+/* ================================= */
+/* RESPONSIVE */
+/* ================================= */
+
+@media(max-width:1200px){
+
+    .innovacion-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .beneficios-grid{
+
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .innovacion-hero h1{
+
+        font-size:70px;
+    }
+}
+
+@media(max-width:700px){
+
+    .innovacion-hero,
+    .innovacion-video,
+    .innovacion-descripcion,
+    .innovacion-beneficios,
+    .innovacion-final{
+
+        padding-left:25px;
+        padding-right:25px;
+    }
+
+    .innovacion-grid{
+
+        padding:0 25px 100px;
+    }
+
+    .innovacion-hero h1{
+
+        font-size:48px;
+    }
+
+    .innovacion-video h2,
+    .innovacion-descripcion h2,
+    .innovacion-beneficios h2,
+    .innovacion-final h2{
+
+        font-size:30px;
+    }
+
+    .beneficios-grid{
+
+        grid-template-columns:1fr;
     }
 }
