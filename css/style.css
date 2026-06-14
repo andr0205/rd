@@ -8,7 +8,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #0D1117;
+    #000000;
 
     color:white;
 
@@ -563,7 +563,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #0D1117;
+    #000000;
 
     color:white;
 
@@ -2998,7 +2998,7 @@ body{
 
     background:
     radial-gradient(circle at top right,#ff008c22,transparent 30%),
-    #0D1117;
+    #000000;
 
     overflow-x:hidden;
 
@@ -3112,7 +3112,7 @@ body{
 
     height:340px;
 
-    background:#0D1117;
+    background:#000000;
 
     border-radius:24px;
 
